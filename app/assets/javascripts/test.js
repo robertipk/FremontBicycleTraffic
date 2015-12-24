@@ -1,7 +1,7 @@
 $(function () {
     $('#container').highcharts({
         title: {
-            text: 'Pedstrian and Bicycle Traffic on the Fremont Bridge, Jan 2014 - Dec 2014',
+            text: 'Pedstrian and Bicycle Traffic on the Fremont Bridge, 2014',
             x: -20 //center
         },
         subtitle: {
