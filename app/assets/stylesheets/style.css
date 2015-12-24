@@ -1,0 +1,18 @@
+
+
+div.background {
+    background: url("seattle.jpg") ;
+    border: 2px solid black;
+}
+
+div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.9;
+    
+}
+
+.panel {
+	background-color: yellow;
+}
