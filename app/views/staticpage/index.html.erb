@@ -68,7 +68,7 @@
               <ul>1. Instantiates client </ul>
               <ul>2. Sends a GET request to endpoint for rows with timestamps between 1/1/2014 and 1/02/2014, then stores the results in response</ul>
               <ul>3. Iterates over each object in the hash. If the object does not exist in the Tally table, a new entry is created with the corresponding values and saved in the table</ul>
-              <ul>4. @data, which contains all entires in the Tally table, is sent to rawjson.html.erb
+              <ul>4. @data, which contains all entires in the Tally table, is available in rawjson.html.erb
             </ol>
             </div>
           </div>
@@ -87,7 +87,29 @@
             end
           </pre>  
 
-          
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <h4>The following code in rawjson.html.erb extracts the data from @data into an organized table</h4>
+            </div>
+          </div>
+
+           <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <img src="<%= asset_path( 'sublimecode.png' ) %>" />
+            </div>
+          </div>
+
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <h4>The resulting page:</h4>
+            </div>
+          </div>
+
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <img src="<%= asset_path( 'localtable.png' ) %>" />
+            </div>
+          </div>
 
           <div class = "panel panel-info">
             <div class = "panel-heading">

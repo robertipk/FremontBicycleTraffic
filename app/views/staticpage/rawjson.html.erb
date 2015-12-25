@@ -1,16 +1,19 @@
-<h5>After extracting the raw json from the GET request, I organized it into this table</h5>
+<p>Currently on <i>http://localhost:3000/staticpage/rawjson</i></p>
 
-<table>
-  <tr>
-    <th>Date &nbsp; &nbsp; &nbsp;</th>
-    <th>Traffic NB</th>
-    <th>Traffic SB</th>
-  </tr>
-   <% @data.each do |f| %>
-  <tr>
-    <td><%= f.date %></td>
-    <td><%= f.fremont_bridge_nb %></td>
-    <td><%= f.fremont_bridge_sb %></td>
-  </tr>
-  <% end %>
-</table>
+<% unless @data.empty? %>
+  <p>Number of rows: <%= @data.size=%></p>
+  <table border="1" style="width:100%">
+    <tr>
+      <th>Date </th>
+      <th>Traffic NB</th>
+      <th>Traffic SB</th>
+    </tr>
+     <% @data.each do |f| %>
+    <tr>
+      <td><%= f.date %></td>
+      <td><%= f.fremont_bridge_nb %></td>
+      <td><%= f.fremont_bridge_sb %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
