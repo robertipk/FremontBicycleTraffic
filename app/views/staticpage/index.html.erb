@@ -12,26 +12,9 @@
 
           <body>
           <h1 class="text-center">Nordstrom Internship Homework</h1>
+          <h3 class="text-center">Using the City of Seattle's API,https://data.seattle.gov, develop a process
+for continually polling/ collecting available dataset(s).</h3>
           <h5 class="text-center">Robert Ip<span class="glyphicon glyphicon-user"></span></h5>
-          <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle text-center" type="button" data-toggle="dropdown">Technologies and Languages
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Ruby on Rails</li>
-                <li>Java</li>
-                <li>C++</li>
-              </ul>
-          </div>
-          </br>
-          <div class = "panel panel-info">
-            <div class = "panel-heading">
-          <h2> Technologies used </h2>
-          <p>Ruby on Rails </p>
-          <p>Highcharts </p>
-
             </div>
           </div>
 
@@ -39,8 +22,12 @@
             <div class = "panel-heading">
           <h2> Dataset </h2>
           <p>As an avid runner and biker, when I last stayed in Seattle I frequently ran over the Fremont Bridge to get to Gas Works Park. In this Rails app, I use the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k"><strong>Fremont Bridge Bicycle Counter dataset</strong></a> to show trends in bicycle traffic over the Fremont Bridge. </p>
-          <p>I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to pull data from the Socrata Seattle Open Data API.</p>
-          <p>Socrata APIs may be accessed using the Socrata Query Language (SoQL) which borrows heavily from SQL. Requests are made to this REST API through HTTPS. Response types include JSON, XML, and CSV.</p>
+          <p><i>The Fremont Bridge Bicycle Counter records the number of bikes that cross the bridge using the pedestrian/bicycle pathways. Inductive loops on the east and west pathways count the passing of bicycles regardless of travel direction. The data consists of a date/time field: Date, east pathway count field: Fremont Bridge NB, and west pathway count field: Fremont Bridge SB. The count fields represent the total bicycles detected during the specified one hour period. Direction of travel is not specified, but in general most traffic in the Fremont Bridge NB field is travelling northbound and most traffic in the Fremont Bridge SB field is travelling southbound.</i></p>
+          <p>Socrata APIs may be accessed using the Socrata Query Language (SoQL) which borrows heavily from SQL.</p>
+          <p>SoQL statements are broken into parameters similar to clauses in SQL statements. Each clause can be expressed either directly as a URL parameter or as a SoQL statement.</p>
+          <p>For example, typing  <i>https://soda.demo.socrata.com/resource/4tka-6guv?$where=magnitude > 3.0</i> into your address bar will return all the entries from the 4tka-6guv dataset where the magnitude data field is greater than 3.0.</p>
+          <p> Requests are made to this REST API through HTTPS. Response types include JSON, XML, and CSV.</p>
+          
           <p> The Bicycle Counter dataset table has three columns:</p> 
             </div>
           </div>
@@ -53,7 +40,7 @@
 
            <div class = "panel panel-info">
             <div class = "panel-heading">
-          <p>As a result, I created my Tally table in my postgres database with the following migration:</p> 
+          <p>To store the data, I created a model and Tally table in my Postgreql database with the following migration:</p> 
             </div>
           </div>
           <pre class="prettyprint">
@@ -63,12 +50,14 @@
 
           <div class = "panel panel-info">
             <div class = "panel-heading">
-          <h4>The  controller below</h4>
+          <p>The Socrata Open Data API (SODA) provides a convenient GUI that can be used to query and export data using your web browser, but can more directly accessed using langauges such as Ruby or Python. After registering for an API key, I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to  query the API.</p>    
+          <h4>The rawjson action (below) in my staticpage controller populates the empty Tally table with one thousand entries:</h4>
+          <p><u>Steps</u></p>
             <ol type="1">
-              <ul>1. Instantiates client </ul>
-              <ul>2. Sends a GET request to endpoint for rows with timestamps between 1/1/2014 and 1/02/2014, then stores the results in response</ul>
-              <ul>3. Iterates over each object in the hash. If the object does not exist in the Tally table, a new entry is created with the corresponding values and saved in the table</ul>
-              <ul>4. @data, which contains all entires in the Tally table, is available in rawjson.html.erb
+              <li>Instantiates client </li>
+              <li>Sends a GET request to endpoint for rows with timestamps between 1/1/2014 and 1/02/2014</li>
+              <li>Iterates over each object in the hash. If the object does not exist in the Tally table, a new entry is created with the corresponding values and saved in the table</li>
+              <li>@data, which contains all entires in the Tally table, is available in rawjson.html.erb
             </ol>
             </div>
           </div>
@@ -113,17 +102,27 @@
 
           <div class = "panel panel-info">
             <div class = "panel-heading">
-            <h2>Challenges </h2>
-          <p>After watching Michael Bate's 2010 RailsCasts tutorial on integrating HighCharts into Rails and making a few HighCharts graphs with hard-coded data using pure javascript, I decided to use Miguel Martinez's <a href="https://github.com/michelson/lazy_high_charts"><strong>LazyHighCharts gem.</strong></a> </p>
+            <h2>Data Vizualization </h2>
+          <p>After watching Michael Bate's 2010 RailsCasts tutorial on integrating <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> into Rails and making a few HighCharts graphs with hard-coded data using pure javascript, I decided to use Miguel Martinez's <a href="https://github.com/michelson/lazy_high_charts"><strong>LazyHighCharts gem.</strong></a> </p>
             </div>
           </div>
 
           <div class = "panel panel-info">
             <div class = "panel-heading">
-          <h2> Goals </h2>
-            <p>It migh be interesting to compare this data with crash statistics/traffic accidents over the same time intervals</p>
+          <h2> Issues/Problems </h2>
+            <ul style="list-style-type:circle">
+              <li>The rawjson action is able to query the API from my local server, but the deployed app on Heroku is unable to.</li>
+              <li>The original dataset has hundreds of rows in which the number of cyclists that passed over the west sidewalk is equal to the number that passed over the east sidewalk. </li>
+              <li>Milk</li>
+            </ul>  
             </div>
           </div>
+
+</body>
+</html>
+
+
+            
 
 
 <%= link_to "Click here for some beautiful charts", action: "chart" %>

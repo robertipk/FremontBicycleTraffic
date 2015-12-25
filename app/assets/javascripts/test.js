@@ -1,7 +1,7 @@
 $(function () {
     $('#container').highcharts({
         title: {
-            text: 'Pedstrian and Bicycle Traffic on the Fremont Bridge, 2014',
+            text: 'Bicycle Traffic on the Fremont Bridge, 2014',
             x: -20 //center
         },
         subtitle: {
@@ -14,7 +14,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Number of Pedestrians and Cyclists'
+                text: 'Number of Cyclists'
             },
             plotLines: [{
                 value: 0,
@@ -32,10 +32,10 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Fremont Bridge NB',
+            name: 'Fremont Bridge East Path',
             data: [566, 456, 546, 567, 678, 567, 567, 789, 765, 789, 567, 456]
         }, {
-            name: 'Fremont Bridge SB',
+            name: 'Fremont Bridge West Path',
             data: [456, 356, 412, 563, 453, 615, 612, 768, 612, 589, 540, 430]
 
         }]
