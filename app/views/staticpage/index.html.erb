@@ -38,12 +38,29 @@
           <div class = "panel panel-info">
             <div class = "panel-heading">
           <h2> Dataset </h2>
-          <p>As an avid runner and cyclist, I decided to play around with the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k"><strong>4xy5-26gy dataset</strong></a> on <strong>https://data.seattle.gov/</strong>, which keeps an hourly tab of the number of pedestrians and cyclists on Fremont Bridge. </p>
-          <p>The dataset consists of just three columns and is suitable for a short homework:
-			date/time field: Date
-			east pathway count field: Fremont Bridge NB
-			west pathway count field: Fremont Bridge SB
-		  </p>
+          <p>As an avid runner and biker, when I last stayed in Seattle I frequently ran over the Fremont Bridge to get to Gas Works Park. In this Rails app, I use the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k"><strong>Fremont Bridge Bicycle Counter dataset</strong></a> to show trends in bicycle traffic over the Fremont Bridge. </p>
+          <p>I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to pull data from the Socrata Seattle Open Data API.</p>
+            </div>
+          </div>
+          <pre class="prettyprint">
+            require 'soda/client'
+            require 'pp' #pretty printer for Ruby objects
+
+            client = SODA::Client.new({:domain => "data.seattle.gov/",
+                           :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
+
+            records = client.get("4xy5-26gy", {"$where" => "date > '2014-01-01T12:00:00' AND date < '2014-01-02T12:00:00'"})
+            pp records
+          </pre>  
+
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <h4>The above code</h4>
+            <ol type="1">
+              <ul>1. Instantiates client </ul>
+              <ul>2. Sends a GET request to endpoint for rows with timestamps between 1/1/2014 and 1/02/2014, then stores the results in the variable records</ul>
+              <ul>3. Prints the hash to the console </ul>
+            </ol>
 
             </div>
           </div>
@@ -51,7 +68,7 @@
           <div class = "panel panel-info">
             <div class = "panel-heading">
             <h2>Challenges </h2>
-          <p>Blah blah blah</p>
+          <p>After watching Michael Bate's 2010 RailsCasts tutorial on integrating HighCharts into Rails and making a few HighCharts graphs with hard-coded data using pure javascript, I decided to use Miguel Martinez's <a href="https://github.com/michelson/lazy_high_charts"><strong>LazyHighCharts gem.</strong></a> </p>
             </div>
           </div>
 
