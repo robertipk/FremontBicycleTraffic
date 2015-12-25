@@ -1,0 +1,16 @@
+<h5>After extracting the raw json from the GET request, I organized it into this table</h5>
+
+<table>
+  <tr>
+    <th>Date &nbsp; &nbsp; &nbsp;</th>
+    <th>Traffic NB</th>
+    <th>Traffic SB</th>
+  </tr>
+   <% @data.each do |f| %>
+  <tr>
+    <td><%= f.date %></td>
+    <td><%= f.fremont_bridge_nb %></td>
+    <td><%= f.fremont_bridge_sb %></td>
+  </tr>
+  <% end %>
+</table>

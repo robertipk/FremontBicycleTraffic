@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  fremont_bridge_nb: MyString
+  fremont_bridge_sb: MyString
+
+two:
+  date: MyString
+  fremont_bridge_nb: MyString
+  fremont_bridge_sb: MyString

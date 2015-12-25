@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'google-code-prettify-rails'
+gem 'soda-ruby', :require => 'soda'
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
