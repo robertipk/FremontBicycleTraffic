@@ -1,10 +1,13 @@
           <div class = "panel panel-info">
             <div class = "panel-heading">
-          <h1> Challenges and Issues </h1>
+          <h1> Challenges, Observations, and Mistakes </h1>
             <ul style="list-style-type:circle">
-              <li>The rawjson action is able to query the API from my local server, but the deployed app on Heroku is unable to.</li>
-              <li>The original dataset has hundreds of rows in which the number of cyclists that passed over the west sidewalk is equal to the number that passed over the east sidewalk. </li>
+              <li>Duplicate records? The original dataset has <i>hundreds</li> of rows in which the number of cyclists that passed over the west sidewalk is equal to the number that passed over the east sidewalk. </li>
               <li>The dataset is missing entries. As the counter records the number of cyclists that pass over the bridge each hour, I would expect each day to contain 24 entries. Many days are 'missing' counts for various hours. This makes averaging tallies and using the GROUP BY query more difficult.</li>
+              <li>
+              <li>I want to show .erb code snippets in my views, which are also .erb files. How do I render the snippets 'inactive' so that the view just prints it as plain html? </li>
+              <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
+              <li>Unsurprisingly, the bridge is busiest at 5pm and 6pm</li>
             </ul>  
             </div>
           </div>
