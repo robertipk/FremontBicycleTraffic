@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'staticpage/infodata'
   get 'staticpage/infodataset'
   get 'staticpage/challenges'
+  get 'staticpage/form'
+  post 'staticpage/parse_form'
+
 
   get 'staticpage/chart'
 

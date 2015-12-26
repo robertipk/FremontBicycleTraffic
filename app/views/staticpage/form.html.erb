@@ -1,0 +1,15 @@
+<h1>Create your own graph here<h1>
+<h3>Choose two timepoints. Submitting this form will:</h3> 
+	<ul>
+		<li>Send a POST request to the /parse_form action in the controller</li>
+		<li>The action will take the timepoints from params and query the API for all entries between those timepoints<li>
+		<li>Store the response in a variable which will be available in views</li>
+		<li>Redirect to views where the line graph will be displayed</li>
+	</ul>
+	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
+	   <%= label_tag(:t1, "timepoint one: ") %>
+	   <%= text_field_tag(:t1)%>
+	   <%= label_tag(:t2, "timepoint two: ") %>
+	   <%= text_field_tag(:t2) %>
+	   <%= submit_tag "Create graph" %>
+	<% end %>
