@@ -1,7 +1,7 @@
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<p> This page  iterates through @data, extracting all field attributes into a table and generating a line graph. If you do not see a line graph under the table, please refresh the page.</p> 
+<p> This page  iterates through @data, extracting all field attributes into a table and generating a line graph. If you do not see a line graph below the table, please refresh the page.</p> 
 <% unless @data.empty? %>
   <p>Number of rows: <%= @data.size=%></p>
   <table border="1" style="width:100%">
@@ -59,7 +59,7 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Fremont East Path',
+            name: 'Fremont Bridge East Path',
             data:
             [
             <% @data.first(@data.size-1).each do |rec| %>
@@ -69,7 +69,7 @@ $(function () {
             ]     
           },
             {
-            name: 'Fremont West Path',
+            name: 'Fremont Bridge West Path',
             data:
             [
             <% @data.first(@data.size-1).each do |rec| %>
