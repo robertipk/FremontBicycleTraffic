@@ -1,6 +1,7 @@
 <div class = "panel panel-info">
             <div class = "panel-heading">
-          <p>The Socrata Open Data API (SODA) may be accessed using the Socrata Query Language (SoQL) which borrows heavily from SQL.</p>
+          <h1>Querying The Socrata Open Data API</h1>
+          <p>The Socrata Open Data API (SODA) may be accessed using the Socrata Query Language (SoQL), which borrows heavily from SQL.</p>
           <p>Each endpoint of a SODA API is a unique URL that represents a dataset. All resources are accessed through a common base path of /resource/ followed by a dataset identifier - eight alpanumeric characters split into two four-character phrases by a dash. The Bicycle Counter API is identified by 65db-xm6k.</p>
           <p>SoQL statements are broken into parameters similar to clauses in SQL statements. Each clause can be expressed either directly as a URL parameter or as a SoQL statement.</p>
           <p>For example, typing  <i>https://soda.demo.socrata.com/resource/65db-xm6k?$where=fremont_bridge_nb > 30 </i> into your address bar will return all the rows from the 65db-xm6k dataset where the number of cyclists that  crossed the bridge on the west pathway is greater than 30.</p>
@@ -19,11 +20,11 @@
 
            <div class = "panel panel-info">
             <div class = "panel-heading">
-          <p>To store the data, I created a model and Tally table in my Postgreql database with the following migration:</p> 
+          <p>To store the data, I created a model and Count table in my Postgreql database with the following migration:</p> 
             </div>
           </div>
           <pre>
-            rails generate model Tally date:string fremont_bridge_nb:string fremont_bridge_sb:string
+            rails generate model Count date:string fremont_bridge_nb:string fremont_bridge_sb:string
           </pre> 
 
 
