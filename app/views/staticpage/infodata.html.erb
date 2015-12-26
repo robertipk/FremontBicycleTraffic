@@ -2,7 +2,7 @@
 
 		<div class = "panel panel-info">
             <div class = "panel-heading">
-          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> samples</a>) will generate a line graph with 'Month' on the x-axis and 'Temperature' on the y-axis.</p> 
+          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> <strong>samples</strong></a>) will generate a line graph with 'Month' on the x-axis and 'Temperature' on the y-axis.</p> 
             </div>
         </div>
 
@@ -64,9 +64,14 @@
                 
             </div>
 		</div>
-
-          <img src="<%= asset_path( 'xaxis.png' ) %>" />
-        
+  <code><pre>
+        categories: [
+            <%= "<% \ @data.first(@data.size-1).each do |record| \ \%\> " %>
+            '<%= "<%= \ record.date \\%\>" %>',
+            <%= "<% \ end \\%\>"%>
+            '<%= "<%= \" @data.last.date \" \%\>" %>'
+        ]
+  </pre></code>      
        
 
 
@@ -76,5 +81,27 @@
           		<p>Here, a similar each loop extracts the 'fremont_bridge_sb' and 'fremont_bridge_nb' attributes (i.e. number of cyclists) from every Count object in @data and places them on the y-axis.</p>
             </div>
 		</div>
-          <img src="<%= asset_path( 'yaxis.png' ) %>" />
+
+    <code><pre>
+        series: [{
+                name: 'Fremont Bridge East Path',
+                data:
+                [
+            <%="<%\ @data.first(@data.size-1).each do |rec| \ \%\> "%>
+            <%="<%=\ rec.fremont_bridge_sb \ \%\>"%>
+            <%="<%\ end \%\> "%>
+            <%="<%=\ @data.last.fremont_bridge_sb \ \ %\>"%>
+                ]     
+              },
+                {
+                name: 'Fremont Bridge West Path',
+                data:
+                [
+                <%= "<%\ @data.first(@data.size-1).each do |rec| \ \%\> "%>
+            <%=  "<%=\ rec.fremont_bridge_nb \ \%\>"%>
+            <%= "<%\ end \%\> "%>
+            <%= "<%=\ @data.last.fremont_bridge_nb \ \ %\>" %>
+                ]     
+          }]
+  </pre></code> 
 
