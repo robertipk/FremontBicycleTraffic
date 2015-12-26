@@ -1,3 +1,7 @@
+<script src="https://code.highcharts.com"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 <p>Currently on <i>http://localhost:3000/staticpage/rawjson</i></p>
 
 <% unless @data.empty? %>
@@ -17,3 +21,70 @@
     <% end %>
   </table>
 <% end %>
+
+<div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+$(function () {
+    $('#containerrr').highcharts({
+        title: {
+            text: 'Monthly Average Temperature',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com',
+            x: -20
+        },
+        xAxis: {
+             
+            categories: [ <% @data.first(@data.size-1).each do |rec| %>
+                          '<%= rec.date %>',
+                          <% end %>
+                          '<%= @data.last.date%>'
+              ]
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+          
+            name: 'Some day',
+
+            data:
+            [
+
+
+
+
+            <% @data.first(@data.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_sb %>,
+            <% end %>
+            <%= @data.last.fremont_bridge_sb%>
+            ]
+
+            
+          }
+         
+
+
+
+        ]
+    });
+});
+
+</script>
