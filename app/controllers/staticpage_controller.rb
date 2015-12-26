@@ -9,6 +9,12 @@ class StaticpageController < ApplicationController
   def infodata
   end
 
+  def infodataset
+  end
+
+  def challenges
+  end
+
   def rawjson
 	client = SODA::Client.new({:domain => "data.seattle.gov/",
                            :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})

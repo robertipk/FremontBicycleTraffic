@@ -1,0 +1,56 @@
+<div class = "panel panel-info">
+            <div class = "panel-heading">
+          <p>The Socrata Open Data API (SODA) may be accessed using the Socrata Query Language (SoQL) which borrows heavily from SQL.</p>
+          <p>Each endpoint of a SODA API is a unique URL that represents a dataset. All resources are accessed through a common base path of /resource/ followed by a dataset identifier - eight alpanumeric characters split into two four-character phrases by a dash. The Bicycle Counter API is identified by 65db-xm6k.</p>
+          <p>SoQL statements are broken into parameters similar to clauses in SQL statements. Each clause can be expressed either directly as a URL parameter or as a SoQL statement.</p>
+          <p>For example, typing  <i>https://soda.demo.socrata.com/resource/65db-xm6k?$where=fremont_bridge_nb > 30 </i> into your address bar will return all the rows from the 65db-xm6k dataset where the number of cyclists that  crossed the bridge on the west pathway is greater than 30.</p>
+          <p>Following REST-ful paradigms, SODA returns standard HTTP Status Codes to denote success or failure. For example, a successful request will get a 200 OK, while a bad query will get a 400 Bad Request.</p>
+          <p> Requests are made to this REST API through HTTPS. Response types include JSON, XML, and CSV.</p>
+          
+          <p> The Bicycle Counter dataset table has three columns:</p> 
+            </div>
+          </div>
+
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <img src="<%= asset_path( 'databasepic.png' ) %>" />
+            </div>
+          </div>
+
+           <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <p>To store the data, I created a model and Tally table in my Postgreql database with the following migration:</p> 
+            </div>
+          </div>
+          <pre>
+            rails generate model Tally date:string fremont_bridge_nb:string fremont_bridge_sb:string
+          </pre> 
+
+
+          <div class = "panel panel-info">
+            <div class = "panel-heading">
+          <p>SODA provides a convenient GUI that can be used to query and export data using your web browser, but can more directly accessed using langauges such as Ruby or Python. After registering my application and obtaining al application token, I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to query the dataset.</p>    
+          <h4>The rawjson action (below) in my staticpage controller populates the empty Tally table with one thousand entries:</h4>
+          <p><u>Steps</u></p>
+            <ol type="1">
+              <li>Instantiate client </li>
+              <li>Send a GET request to the endpoint for rows where the 'date' column is between 1/1/2014 and 1/02/2015</li>
+              <li>Iterates over each object in the resulting hash. If the object does not exist in the Tally table, a new entry is created with the corresponding values and saved in the table</li>
+              <li>@data, which contains all entries in the Tally table, is available in rawjson.html.erb
+            </ol>
+            </div>
+          </div>
+
+          <pre>
+            def rawjson
+                client = SODA::Client.new({:domain => "data.seattle.gov/",
+                                         :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
+                response = client.get("4xy5-26gy", {"$where" => "date > '2014-01-01T12:00:00' AND date < '2015-01-02T18:00:00'"})
+
+                response.each do |r|
+                  record = Tally.find_or_create_by(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
+                  record.save
+                end
+                @data = Tally.all
+            end
+          </pre> 
