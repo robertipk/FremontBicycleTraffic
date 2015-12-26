@@ -1,9 +1,7 @@
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<p>Currently on <i>http://localhost:3000/staticpage/rawjson</i></p>
-
+<p> If you do not see a line graph under the table, please refresh the page to see the graph </p>
 <% unless @data.empty? %>
   <p>Number of rows: <%= @data.size=%></p>
   <table border="1" style="width:100%">
@@ -61,7 +59,7 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Hour',
+            name: 'Fremont East Path',
             data:
             [
             <% @data.first(@data.size-1).each do |rec| %>
@@ -69,8 +67,17 @@ $(function () {
             <% end %>
             <%= @data.last.fremont_bridge_sb%>
             ]     
-          }
-        ]
+          },
+            {
+            name: 'Fremont West Path',
+            data:
+            [
+            <% @data.first(@data.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_nb %>,
+            <% end %>
+            <%= @data.last.fremont_bridge_nb%>
+            ]     
+          }]
     });
 });
 </script>
