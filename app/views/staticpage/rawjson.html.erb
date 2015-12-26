@@ -35,9 +35,8 @@ $(function () {
             x: -20
         },
         xAxis: {
-             
-            categories: [ <% @data.first(@data.size-1).each do |rec| %>
-                          '<%= rec.date %>',
+            categories: [ <% @data.first(@data.size-1).each do |record| %>
+                          '<%= record.date %>',
                           <% end %>
                           '<%= @data.last.date%>'
               ]
@@ -62,29 +61,16 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-          
             name: 'Some day',
-
             data:
             [
-
-
-
-
             <% @data.first(@data.size-1).each do |rec| %>
             <%= rec.fremont_bridge_sb %>,
             <% end %>
             <%= @data.last.fremont_bridge_sb%>
-            ]
-
-            
+            ]     
           }
-         
-
-
-
         ]
     });
 });
-
 </script>
