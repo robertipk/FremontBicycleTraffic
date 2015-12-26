@@ -2,56 +2,56 @@
 
 		<div class = "panel panel-info">
             <div class = "panel-heading">
-          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> <strong>samples</strong></a>) will generate a line graph with 'Month' on the x-axis and 'Temperature' on the y-axis.</p> 
+          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> <strong>samples</strong></a>) will generate a line graph with twelve months (timepoints) on the x-axis and corresponding 'Temperature' values on the y-axis.</p> 
             </div>
         </div>
 
         <pre><code>
-            	$(function () {
-    $('#container').highcharts({
-        title: {
-            text: 'Monthly Average Temperature',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com',
-            x: -20
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Tokyo',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }, {
-            name: 'New York',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-        }, {
-            name: 'Berlin',
-            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-        }, {
-            name: 'London', 
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        $(function () {
+            $('#container').highcharts({
+                title: {
+                    text: 'Monthly Average Temperature',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Source: WorldClimate.com',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Temperature (°C)'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '°C'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                }, {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                }, {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                }, {
+                    name: 'London', 
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
         }]
     });
 });
@@ -59,16 +59,16 @@
 
 	    <div class = "panel panel-info">
             <div class = "panel-heading">
-          		<p>To display dynamic content in my own graphs, I need to replace the hard-coded xAxis and yAxis values with the varying 'date' attributes and bicycle count attributes available in @data sent from the controller. The Ruby each loop below extracts the 'date' attribute from every Count object in @data. Whether the controller stores ten objects in @data or two thousand, the loop will iterate over the entire array and place every 'date' attribute on the x-axis.</p>
-                <p>From the sample code above, you can see that all values <i>except</i> the last value on the x-axis and y-axis are separated by commas. Since my each loop places a comma after each extracted value, I cannot use the loop to insert the last value. There, if I want all time-points to be graphed, the loop executes (@data.size-1) times, and @data.last.date inserts the final entry. 
+          		<p>To display dynamic content in my own graphs, I need to replace the hard-coded xAxis and yAxis values with the tens (or thousands) of 'date' attributes and bicycle count attributes available in @data sent from the controller. The Ruby each loop below extracts the 'date' attribute from every Count object in @data. Whether the controller stores ten objects in @data or two thousand, the loop will iterate over the entire array and place every 'date' attribute on the x-axis.</p>
+                <p>From the sample code above, you can see that all values <i>except</i> the last value on the x-axis and y-axis are followed by a comma. Since my each loop places a comma after each extracted value, the loop cannot be used to insert the last value. Therefore, if I want data for the first <strong>n</strong> timepoints on the x-axis, the loop should executes <strong>n-1</strong> times, while @data.last.date inserts the <strong>nth</strong> timepoint. 
                 
             </div>
 		</div>
   <code><pre>
         categories: [
             <%= "<% \ @data.first(@data.size-1).each do |record| \ \%\> " %>
-            '<%= "<%= \ record.date \\%\>" %>',
-            <%= "<% \ end \\%\>"%>
+            '<%= "<%= \ record.date \%\>" %>',
+            <%= "<% \ end \%\>"%>
             '<%= "<%= \" @data.last.date \" \%\>" %>'
         ]
   </pre></code>      
@@ -78,7 +78,7 @@
 
 		<div class = "panel panel-info">
             <div class = "panel-heading">
-          		<p>Here, a similar each loop extracts the 'fremont_bridge_sb' and 'fremont_bridge_nb' attributes (i.e. number of cyclists) from every Count object in @data and places them on the y-axis.</p>
+          		<p>Below, similar each loops extract the 'fremont_bridge_sb' and 'fremont_bridge_nb' attributes (i.e. number of cyclists) from every Count object in @data and adds them on the y-axis.</p>
             </div>
 		</div>
 
@@ -88,19 +88,19 @@
                 data:
                 [
             <%="<%\ @data.first(@data.size-1).each do |rec| \ \%\> "%>
-            <%="<%=\ rec.fremont_bridge_sb \ \%\>"%>
+            <%="<%=\ rec.fremont_bridge_sb \%\>"%>
             <%="<%\ end \%\> "%>
-            <%="<%=\ @data.last.fremont_bridge_sb \ \ %\>"%>
+            <%="<%=\ @data.last.fremont_bridge_sb \ %\>"%>
                 ]     
               },
                 {
                 name: 'Fremont Bridge West Path',
                 data:
                 [
-                <%= "<%\ @data.first(@data.size-1).each do |rec| \ \%\> "%>
-            <%=  "<%=\ rec.fremont_bridge_nb \ \%\>"%>
+                <%= "<%\ @data.first(@data.size-1).each do |rec| \%\> "%>
+            <%=  "<%=\ rec.fremont_bridge_nb \ %\>"%>
             <%= "<%\ end \%\> "%>
-            <%= "<%=\ @data.last.fremont_bridge_nb \ \ %\>" %>
+            <%= "<%=\ @data.last.fremont_bridge_nb \ %\>"%>
                 ]     
           }]
   </pre></code> 
