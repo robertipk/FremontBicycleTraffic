@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'staticpage/chart'
   root 'staticpage#index'
   get 'staticpage/infodata'
   get 'staticpage/infodataset'

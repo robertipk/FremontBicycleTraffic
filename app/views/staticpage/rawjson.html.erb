@@ -1,7 +1,7 @@
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<p> If you do not see a line graph under the table, please refresh the page to see the graph </p>
+<p> This page  iterates through @data, extracting all field attributes into a table and generating a line graph. If you do not see a line graph under the table, please refresh the page.</p> 
 <% unless @data.empty? %>
   <p>Number of rows: <%= @data.size=%></p>
   <table border="1" style="width:100%">
@@ -50,7 +50,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: ' cyclists'
         },
         legend: {
             layout: 'vertical',

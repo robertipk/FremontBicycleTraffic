@@ -3,9 +3,6 @@ class StaticpageController < ApplicationController
   def index
   end
 
-  def chart
-  end
-
   def infodata
   end
 
@@ -25,6 +22,6 @@ class StaticpageController < ApplicationController
 		record = Count.find_or_create_by(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
 		record.save
 	end
-	@data = Count.limit(20).order(date: :asc)
+	@data = Count.limit(40).order(date: :asc)
   end
 end
