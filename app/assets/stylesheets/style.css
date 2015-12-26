@@ -20,3 +20,8 @@ div.transbox {
 #nav li.current_page_item a{
 color: #7a2323;
 }
+
+#warning {
+
+	color: red;
+}

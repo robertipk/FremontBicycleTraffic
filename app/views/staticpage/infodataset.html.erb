@@ -18,7 +18,7 @@
 
            <div class = "panel panel-info">
             <div class = "panel-heading">
-          <p>To store the data, I created a model and Count table in my Postgreql database with the following migration:</p> 
+          <p>To pull and store data SODA, I created a model and Count table in my PostgreSQL database with the following migration:</p> 
             </div>
           </div>
           <pre>
@@ -28,13 +28,13 @@
 
           <div class = "panel panel-info">
             <div class = "panel-heading">
-          <p>SODA provides a convenient GUI that can be used to query and export data using your web browser, but can more directly accessed using langauges such as Ruby or Python. After registering my application and obtaining al application token, I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to query the dataset.</p>    
+          <p>SODA provides a convenient GUI that can be used to query and export data using your web browser, but can more directly accessed using langauges such as Ruby or Python. After registering my application and obtaining an application token, I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to query the dataset.</p>    
           <h4>The rawjson action (below) in my staticpage controller populates the Count table with one thousand entries:</h4>
           <p><u>Steps</u></p>
             <ol type="1">
               <li>Instantiate client </li>
               <li>Send a GET request to the endpoint for rows where the 'date' column is between 1/1/2014 and 1/02/2015</li>
-              <li>Iterates over each object in the resulting hash. If the object does not exist in the Tally table, a new entry is created with the corresponding values and saved in the table</li>
+              <li>Iterate over each object in the resulting hash. If the object does not already exist in the Count table, a new entry is created with the corresponding values and saved in the table</li>
               <li>@data, which contains all entries in the Count table, is available in rawjson.html.erb
             </ol>
             </div>

@@ -68,7 +68,7 @@
         <code><pre>
 		xAxis: {
             categories: [ < @data.first(@data.size-1).each do |record| %>
-                          '<%= record.date %>',
+                          '<%= record. date %>',
                            <= end %>
                           '<%= @data.last.date%>'
               ]
@@ -89,9 +89,9 @@
             name: 'Fremont Bridge East Path',
             data:
             [
-            <% @data.first(@data.size-1).each do |rec| %>
+            < @data.first(@data.size-1).each do |rec| %>
             <%= rec.fremont_bridge_sb %>,
-            <% end %>
+            < end %>
             <%= @data.last.fremont_bridge_sb%>
             ]     
           },
@@ -99,9 +99,9 @@
             name: 'Fremont Bridge West Path',
             data:
             [
-            <% @data.first(@data.size-1).each do |rec| %>
-            <%= rec.fremont_bridge_nb %>,
-            <% end %>
+            < @data.first(@data.size-1).each do |rec| %>
+            <%= rec. fremont_bridge_nb %>,
+            < end %>
             <%= @data.last.fremont_bridge_nb%>
             ]     
           }]

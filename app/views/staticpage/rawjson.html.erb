@@ -1,31 +1,44 @@
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<p> This page  iterates through @data, extracting all field attributes into a table and generating a line graph. If you do not see a line graph below the table, please refresh the page.</p> 
-<% unless @data.empty? %>
-  <p>Number of rows: <%= @data.size=%></p>
-  <table border="1" style="width:100%">
-    <tr>
-      <th>Date </th>
-      <th>Cyclists on West Path</th>
-      <th>Cyclists on East Path</th>
-    </tr>
-     <% @data.each do |f| %>
-    <tr>
-      <td><%= f.date %></td>
-      <td><%= f.fremont_bridge_nb %></td>
-      <td><%= f.fremont_bridge_sb %></td>
-    </tr>
-    <% end %>
-  </table>
-<% end %>
+<div class = "panel panel-info">
+    <div class = "panel-heading">
+    <p> Navigating to this page:</p>
+      <ul>
+        <li>Causes the rawjson action in the controller to query SODA. This may take several seconds. </li>
+        <li>Approximately 1000 entries are stored in the Count table
+        <li>The first 40 reponses (I didn't want to display too big of a table) are stored in @data</li>
+        <li>@data is passed to this view</li>
+        <li>The view accepts @data and iterates through all 40 objects to create the table and graph below</li>
+      </ul>
 
-<div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <p id="warning"><strong>If you do not see a line graph below the table, please refresh the page.</strong></p> 
+    <% unless @data.empty? %>
+      <p>Number of rows: <%= @data.size=%></p>
+      <table border="1" style="width:100%">
+        <tr>
+          <th>Date </th>
+          <th>Cyclists on West Path</th>
+          <th>Cyclists on East Path</th>
+        </tr>
+         <% @data.each do |f| %>
+        <tr>
+          <td><%= f.date %></td>
+          <td><%= f.fremont_bridge_nb %></td>
+          <td><%= f.fremont_bridge_sb %></td>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+   </div>    
 <script>
 $(function () {
     $('#containerrr').highcharts({
         title: {
-            text: 'Cyclists per Hour on the Fremont Bridge',
+            text: 'Cyclists per Hour on the Fremont Bridge: 1/1/2014 - 1/3/2014',
             x: -20 //center
         },
         subtitle: {
