@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225181302) do
+ActiveRecord::Schema.define(version: 20151226080151) do
 
-  create_table "tallies", force: :cascade do |t|
+  create_table "counts", force: :cascade do |t|
     t.string   "date"
     t.string   "fremont_bridge_nb"
     t.string   "fremont_bridge_sb"

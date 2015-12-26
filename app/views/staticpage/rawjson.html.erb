@@ -27,11 +27,11 @@
 $(function () {
     $('#containerrr').highcharts({
         title: {
-            text: 'Monthly Average Temperature',
+            text: 'Cyclists per Hour on the Fremont Bridge',
             x: -20 //center
         },
         subtitle: {
-            text: 'Source: WorldClimate.com',
+            text: 'Source: data.seattle.gov',
             x: -20
         },
         xAxis: {
@@ -43,7 +43,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: 'Number of Cyclists'
             },
             plotLines: [{
                 value: 0,
@@ -61,7 +61,7 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Some day',
+            name: 'Hour',
             data:
             [
             <% @data.first(@data.size-1).each do |rec| %>

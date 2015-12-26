@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TallyTest < ActiveSupport::TestCase
+class CountTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

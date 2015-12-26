@@ -16,9 +16,9 @@ class StaticpageController < ApplicationController
 	#response = client.get("4xy5-26gy", {"$order" => "'ASC'"})
 
 	response.each do |r|
-		record = Tally.find_or_create_by(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
+		record = Count.find_or_create_by(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
 		record.save
 	end
-	@data = Tally.limit(20).order(date: :asc)
+	@data = Count.limit(20).order(date: :asc)
   end
 end
