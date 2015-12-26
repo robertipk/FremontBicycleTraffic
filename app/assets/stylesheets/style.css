@@ -16,3 +16,7 @@ div.transbox {
 .panel {
 	background-color: yellow;
 }
+
+#nav li.current_page_item a{
+color: #7a2323;
+}
