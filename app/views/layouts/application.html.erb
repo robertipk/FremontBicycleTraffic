@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>High</title>
+  <title>Nordstrom Homework Assignment</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+<style>
+#navvv a:link, a:visited {
+    font-weight: bold;
+    color: #066;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#navvv a:hover, a:active {
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
+#navvv a.selected:link, a.selected:active{
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
 
+#navvv a.selected:hover, a.selected:visited {
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
+</style>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -18,12 +43,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand glyphicon glyphicon-home" href="/" > Robert's Traffic Monitoring App</a>
+      <a class="navbar-brand glyphicon glyphicon-home" id= "home" href="/" > Robert's Traffic Monitoring App</a>
 
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="navvv">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/staticpage/rawjson"> Data </a></li>
         <li class="active"><a href="/staticpage/infodataset"> Dataset</a></li>
