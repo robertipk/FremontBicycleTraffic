@@ -22,6 +22,36 @@ color: #7a2323;
 }
 
 #warning {
-
 	color: red;
+}
+
+#navvv a:link, a:visited {
+    font-weight: bold;
+    color: #066;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#navvv a:hover, a:active {
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
+#navvv a.selected:link, a.selected:active{
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
+
+#navvv a.selected:hover, a.selected:visited {
+    display: block;
+    background-color: #066;
+    color: #fff;
+}
+
+
+code {
+	background-color: yellow;
+
 }

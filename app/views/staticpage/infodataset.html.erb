@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <pre>
+          <code><pre>
             def rawjson
                 client = SODA::Client.new({:domain => "data.seattle.gov/",
                                          :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
@@ -53,7 +53,7 @@
                 end
                 @data = Count.all
             end
-          </pre> 
+          </pre>
 
           <div class = "panel panel-info">
             <div class = "panel-heading">
@@ -68,22 +68,22 @@
           <code><pre>
 
               <%=" <%\ unless @data.empty? \%\> "%>
-                <p>Number of rows: <%=" <%=\ @data.size \%\> "%></p>
+                &lt;p&gt;Number of rows: <%=" <%=\ @data.size \%\> "%>&lt;/p&gt;
                 <table border="1" style="width:100%">
-                  <tr>
-                    <th>Date </th>
-                    <th>Cyclists on West Path</th>
-                    <th>Cyclists on East Path</th>
-                  </tr>
-                  <%=" <%\ @data.each do |f| \\%\> "%>
-                  <tr>
-                    <td><%=" <%=\ f.date \\%\> "%> </td>
-                    <td><%=" <%=\ f.fremont_bridge_nb \%\> "%></td>
-                    <td><%=" <%=\ f.fremont_bridge_sb \%\> "%> </td>
-                  </tr>
+                  &lt;tr&gt;
+                    &lt;th&gt;Date &lt;/th&gt;
+                    &lt;th&gt;Cyclists on West Path&lt;/th&gt;
+                    &lt;th&gt;Cyclists on East Path&lt;/th&gt;
+                  &lt;/tr&gt;
+                  <%=" <%\ @data.each do |f| \%\> "%>
+                  &lt;tr&gt;
+                    &lt;td&gt;<%=" <%=\ f.date \%\> "%>&lt;/td&gt;
+                    &lt;td&gt;<%=" <%=\ f.fremont_bridge_nb \%\> "%>&lt;/td&gt;
+                    &lt;td&gt;<%=" <%=\ f.fremont_bridge_sb \%\> "%>&lt;/td&gt;
+                  &lt;/tr&gt;
                   <%=" <%\ end \%\> "%>
-                </table>
-            <%=" <%\ end \%\> "%>
+                &lt;/table&gt;
+               <%="<%\ end \%\>"%>
 
           </pre></code>
             </div>
