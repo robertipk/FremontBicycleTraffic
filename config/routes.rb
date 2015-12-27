@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root 'staticpage#index'
-  get 'staticpage/infodata'
-  get 'staticpage/infodataset'
+  get 'staticpage/visual'
+  get 'staticpage/query'
   get 'staticpage/challenges'
   get 'staticpage/form'
+  get 'staticpage/newgraph'
+
   post 'staticpage/parse_form'
 
 

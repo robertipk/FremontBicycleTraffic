@@ -17,3 +17,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require google-code-prettify-rails/prettify
+//= require moment
+//= require bootstrap-datetimepicker

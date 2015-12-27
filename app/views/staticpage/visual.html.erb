@@ -1,8 +1,8 @@
-		<h1>Visualizing Data</h1>
+		<h1>Visualizing Data With HighCharts</h1>
 
 		<div class = "panel panel-info">
             <div class = "panel-heading">
-          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> <strong>samples</strong></a>) will generate a line graph with twelve months (timepoints) on the x-axis and corresponding 'Temperature' values on the y-axis.</p> 
+          <p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a> is a popular Javascript charting library for web projects. The Javascript below (taken from their <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/line-basic/"> <strong>samples</strong></a>) will generate a line graph with twelve months (timepoints) on the x-axis and corresponding 'Temperature' values on the y-axis.</p> 
             </div>
         </div>
 
@@ -59,8 +59,8 @@
 
 	    <div class = "panel panel-info">
             <div class = "panel-heading">
-          		<p>To display dynamic content in my own graphs, I need to replace the hard-coded xAxis and yAxis values with the tens (or thousands) of 'date' attributes and bicycle count attributes available in @data sent from the controller. The Ruby each loop below extracts the 'date' attribute from every Count object in @data. Whether the controller stores ten objects in @data or two thousand, the loop will iterate over the entire array and place every 'date' attribute on the x-axis.</p>
-                <p>From the sample code above, you can see that all values <i>except</i> the last value on the x-axis and y-axis are followed by a comma. Since my each loop places a comma after each extracted value, the loop cannot be used to insert the last value. Therefore, if I want data for the first <strong>n</strong> timepoints on the x-axis, the loop should executes <strong>n-1</strong> times, while @data.last.date inserts the <strong>nth</strong> timepoint. 
+          		<p>To display dynamic content in my own graphs, I need to replace the hard-coded xAxis and yAxis values with the tens (or thousands) of attributes available in the instance variable(s) passed from the controller. The <code>each</code> loop below extracts the 'date' attribute from every Count object in @data. Whether the controller stores ten objects in @data or two thousand, the loop can iterate over the entire array and place every 'date' attribute on the x-axis.</p>
+                <p>In the Javascript that creates the graph, all values <i>except</i> the last value are followed by a comma. Since my each loop places a comma after each extracted attribute, the loop cannot be used to insert the last value. Therefore, if I want to plot the data for the first <strong>n</strong> timepoints from @data on the x-axis, the loop should execute <strong>n-1</strong> times, while @data.last.date inserts the <strong>nth</strong> timepoint. 
                 
             </div>
 		</div>
@@ -78,7 +78,7 @@
 
 		<div class = "panel panel-info">
             <div class = "panel-heading">
-          		<p>Below, similar each loops extract the 'fremont_bridge_sb' and 'fremont_bridge_nb' attributes (i.e. number of cyclists) from every Count object in @data and adds them on the y-axis.</p>
+          		<p>Below, for values on the y-axis, similar <code>each</code> loops extract the 'fremont_bridge_sb' and 'fremont_bridge_nb' attributes (i.e. number of cyclists) from every Count object.</p>
             </div>
 		</div>
 

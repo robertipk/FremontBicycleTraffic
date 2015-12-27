@@ -1,6 +1,8 @@
+          <h1>The Socrata Open Data API</h1>
+
           <div class = "panel panel-info">
             <div class = "panel-heading">
-          <h2>Querying The Socrata Open Data API</h2>
+              
           <p>The <a href="https://dev.socrata.com/"><strong>Socrata Open Data API (SODA)</strong></a> offers access to thousands of open data resources from governments, non-profits, and NGOs around the world. SODA may be accessed using the Socrata Query Language (SoQL), which borrows heavily from SQL.</p>
           <p>Each endpoint of a SODA API is a unique URL that represents a dataset. All resources are accessed through a common base path of /resource/ followed by a dataset identifier - eight alpanumeric characters split into two four-character phrases by a dash. The Bicycle Counter API is identified by 65db-xm6k.</p>
           <p>SoQL statements are broken into parameters similar to clauses in SQL statements. Each clause can be expressed either directly as a URL parameter or as a SoQL statement.</p>
@@ -34,9 +36,10 @@
           <p><u>Steps</u></p>
             <ol type="1">
               <li>Instantiate client </li>
-              <li>Send a GET request to the endpoint for rows where the 'date' column is between 1/1/2014 and 1/02/2015</li>
-              <li>Iterate over each object in the resulting hash. If the object does not already exist in the Count table, a new entry is created with the corresponding values and saved in the table</li>
-              <li>The instance variable (@data) is passed from the controller to the view (rawjson.html.erb)
+              <li>Send a GET request to the endpoint for rows where the 'date' column is between 12:00 on 1/1/2014 and and 18:00 on 1/02/2015</li>
+              <li>Iterate over each object in the JSON array returned by the API</li>
+              <li>If the object does not already exist in the Count table, a new entry is created with the corresponding values and saved in the table</li>
+              <li>The instance variable (@data) is passed from the controller to the view (rawjson.html.erb)</li>
             </ol>
             </div>
           </div>

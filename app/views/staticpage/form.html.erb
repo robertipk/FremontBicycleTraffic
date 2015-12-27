@@ -1,13 +1,50 @@
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+
+  $(function() {
+    $( "#datepicker2" ).datepicker();
+  });
+
+
+  $(function () {
+            $('#datetimepicker12').datetimepicker({
+                inline: true,
+                sideBySide: true
+            });
+        });
+
+    $(function () {
+                $('#datetimepicker8').datetimepicker();
+            });
+
+
+    </script>
+</head>
+
+
+<body>
 <h1>IN PROGRESS </h1>
 <h1>Create your own graph here<h1>
 <h3>Choose two timepoints. Submitting this form will:</h3> 
 <i>pseudocode</i>
 	<ul>
 		<li>Send a POST request to the /parse_form action in the controller</li>
-		<li>The action will take the timepoints from params and query the API for all entries between those timepoints</li>
-		<li>Store the response in a variable which will be available in views</li>
-		<li>Redirect to views where the line graph will be displayed</li>
+		<li>The parse_form action will save the two timepoints from the params hash into the Query table and query the API for all entries between those timepoints</li>
+		<li>Store the response from the API in an instance variable which will be available in views</li>
+		<li>Redirect to views, which will display a HighCharts graph</li>
 	</ul>
+
+<p>The application uses the Ruby DateTime library ordinal method to extract the information from the form.</p>
+<p>Please enter your timepoints in the form below in the following format:</p>
+<p>2001-02-03T04:05:06+07:00</p>
+
 	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
 	   <%= label_tag(:t1, "timepoint one: ") %>
 	   <%= text_field_tag(:t1)%>
@@ -15,3 +52,33 @@
 	   <%= text_field_tag(:t2) %>
 	   <%= submit_tag "Create graph" %>
 	<% end %>
+
+<p>You can also use the Datepick calendar to select two timepoints. If you select only one timepoint, by default the application will query the dataset for all counts on that specific day.</p>
+<p>Date: <input type="text" id="datepicker"></p>
+<p>Date: <input type="text" id="datepicker2"></p>
+
+
+
+                <div id="datetimepicker12"></div>
+  
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker8'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+

@@ -8,6 +8,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'google-code-prettify-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'soda-ruby', :require => 'soda'
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
