@@ -99,7 +99,10 @@ $(document).ready(function(){
                     <p>Right now, when a user tries to generate a new graph, the controller deletes all entries in the pre-existing Count table, queries the API with the specified timepoints, and populates the table accordingly. As deleting the table using Count.delete_all does not reset the id attributes back to zero, in the each loop I use a counter to set each new datapoint's id attribute as it is saved in the table. As the this data is now saved in the table has id attributes in the range of 1-1000, I can get the data back out to by creating an appropriate instance variable to pass to the views using @foo=Count.limit(1000). Of course, this is terribly inefficient and slow.</p>
                   </li>
 
-                  <li><p><strong>Why is my Asset Pipeline not working?</strong></p></li>
+                  <li><p><strong>Why is my Asset Pipeline not adding my javascript files to the manifest javascript file?</strong></p></li>
+
+                  <li><p><strong>Why does the page sometimes have to be reloaded for the jquery function to run?</strong></p></li>
+
                   
                 </ul> 
               </h4> 
