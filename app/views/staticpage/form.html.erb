@@ -6,24 +6,10 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
-  });
-
-  $(function() {
     $( "#datepicker2" ).datepicker();
   });
 
-
-  $(function () {
-            $('#datetimepicker12').datetimepicker({
-                inline: true,
-                sideBySide: true
-            });
-        });
-
-    $(function () {
-                $('#datetimepicker8').datetimepicker();
-            });
-
+  
 
     </script>
 </head>
@@ -43,7 +29,7 @@
 
 <p>The application uses the Ruby DateTime library ordinal method to extract the information from the form.</p>
 <p>Please enter your timepoints in the form below in the following format:</p>
-<p>2001-02-03T04:05:06+07:00</p>
+<p>2014-01-01T12:00:00</p>
 
 	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
 	   <%= label_tag(:t1, "timepoint one: ") %>
@@ -59,25 +45,7 @@
 
 
 
-                <div id="datetimepicker12"></div>
-  
 
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker8'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 </body>

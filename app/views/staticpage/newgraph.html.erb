@@ -1,4 +1,89 @@
-<%= @timepoint1.timepoint %>
-<%= @timepoint2.timepoint %>
-<%= @time %>
+<script src="https://code.highcharts.com"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+You entered the timepoints <%= @timepoint1.timepoint %> and <%= @timepoint2.timepoint %>
 
+<% unless @new.empty? %>
+      <p>Number of rows: <%= @new.size=%></p>
+      <table border="1" style="width:100%">
+        <tr>
+          <th>Date </th>
+          <th>Cyclists on West Path</th>
+          <th>Cyclists on East Path</th>
+        </tr>
+         <% @new.each do |f| %>
+        <tr>
+          <td><%= f.date %></td>
+          <td><%= f.fremont_bridge_nb %></td>
+          <td><%= f.fremont_bridge_sb %></td>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+
+
+
+<div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+   </div>    
+<script>
+$(function () {
+    $('#containerrr').highcharts({
+        title: {
+            text: 'Cyclists per Hour on the Fremont Bridge: <%= @timepoint1.timepoint %>',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: data.seattle.gov',
+            x: -20
+        },
+        xAxis: {
+            categories: [ <% @new.first(@new.size-1).each do |record| %>
+                          '<%= record.date %>',
+                          <% end %>
+                          '<%= @new.last.date%>'
+              ]
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Cyclists'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ' cyclists'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Fremont Bridge East Path',
+            data:
+            [
+            <% @new.first(@new.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_sb %>,
+            <% end %>
+            <%= @new.last.fremont_bridge_sb%>
+            ]     
+          },
+            {
+            name: 'Fremont Bridge West Path',
+            data:
+            [
+            <% @new.first(@new.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_nb %>,
+            <% end %>
+            <%= @new.last.fremont_bridge_nb%>
+            ]     
+          }]
+    });
+});
+</script>

@@ -32,7 +32,7 @@
           <div class = "panel panel-info">
             <div class = "panel-heading">
           <p>SODA provides a convenient GUI that can be used to query and export data using any web browser, but can more directly accessed using langauges such as Ruby or Python. After registering my application and obtaining an application token, I used the <a href="https:github.com/socrata/soda-ruby"><strong>soda-ruby</strong></a> gem to query the dataset.</p>    
-          <h4>The rawjson action (below) in my staticpage controller populates the Count table with one thousand entries:</h4>
+          <h4>SODA has a limit of 1000 data points per call (assuming 24 hourly counts per day, that amounts to slightly over forty days). The rawjson action (below) in my staticpage controller populates the Count table with 1000 rows.</h4>
           <p><u>Steps</u></p>
             <ol type="1">
               <li>Instantiate client </li>
