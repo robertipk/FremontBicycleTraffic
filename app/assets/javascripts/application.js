@@ -18,4 +18,5 @@
 //= require google-code-prettify-rails/prettify
 //= require moment
 //= require bootstrap-datetimepicker
+// = require 'staticpage'
 

@@ -7,6 +7,9 @@ $(document).ready(function(){
     $("#challenges").click(function(){
         $("#observations").slideToggle("slow");
     });
+    $("#todo1").click(function(){
+        $("#todo2").slideToggle("slow");
+    });
 
 
 });
@@ -64,16 +67,31 @@ $(document).ready(function(){
       </div>
   </div>
   
-<div id="challenges"><h1> Challenges and Observations </h1></div>
+<div id="challenges"><h1> Unresolved Issues </h1></div>
     <div id="observations" style="display:none;">
       <div class = "panel panel-info">
             <div class = "panel-heading">
               <h4>
                 <ul style="list-style-type:circle">
-                  <li>Duplicate records? The original dataset has <i>hundreds</i> of rows in which the number of cyclists that passed over the west sidewalk is equal to the number that passed over the east sidewalk. </li>
                   <li>The dataset is missing entries. As the counter records the number of cyclists that pass over the bridge each hour, I would expect each day to contain 24 entries. Many days are 'missing' counts for various hours. This makes averaging tallies and using the GROUP BY query more difficult.</li>
                   <li>
-                  <li>I want to show .erb code snippets in my views, which are also .erb files. How do I render the snippets 'inactive' so that the view just prints it as plain html? </li>
+                  <li>Still unable to resize images  </li>
+                  <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
+                </ul> 
+              </h4> 
+            </div>
+          </div>
+</div>
+
+<div id="todo1"><h1> To Do List  </h1></div>
+    <div id="todo2" style="display:none;">
+      <div class = "panel panel-info">
+            <div class = "panel-heading">
+              <h4>
+                <ul style="list-style-type:circle">
+                  <li>Learn to resize screenshots with the image tag</li>
+                  <li>Cache data so each GET request to the views does not trigger a new API query</li>
+                  <li>Still unable to resize images  </li>
                   <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
                 </ul> 
               </h4> 
