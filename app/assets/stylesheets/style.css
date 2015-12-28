@@ -13,6 +13,27 @@ div.transbox {
     
 }
 
+#create {
+    margin: 30px;
+    background-color: #CCFFCC;
+    border: 1px solid black;
+    opacity: 0.9;
+}
+
+#create1 {
+    margin: 30px;
+    background-color: #FFFFCC;
+    border: 1px solid black;
+    opacity: 0.9;
+}
+
+#jscode {
+
+    background-color: #FFFFCC;
+    
+    opacity: 0.9;
+}
+
 .panel {
 	background-color: yellow;
 }

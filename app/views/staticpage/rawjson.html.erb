@@ -7,9 +7,9 @@
       <ul>
         <li>Causes the rawjson action in the controller to query SODA. This may take several seconds. </li>
         <li>Approximately 1000 entries are stored in the Count table
-        <li>The first 40 reponses (I didn't want to display too big of a table) are stored in @data</li>
+        <li>In displaying this page, the first 500 objects are stored in @data</li>
         <li>@data is passed to this view</li>
-        <li>The view accepts @data and iterates through all 40 objects to create the table and graph below</li>
+        <li>The view accepts @data and iterates through all 500 datapoints to create the table and graph below</li>
       </ul>
     <div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <p id="warning"><strong>If you do not see a line graph at the top of this page, please refresh the page.</strong></p> 

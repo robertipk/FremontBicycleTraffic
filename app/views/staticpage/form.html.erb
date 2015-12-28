@@ -1,52 +1,49 @@
-<head>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
+  <h1>Create your own graph </h1>
+
+<div class = "panel panel-info">
+  <div class = "panel-heading">
+  <h3>Submitting this form will:</h3> 
+  	<ul>
+  		<li>Send a POST request to the /parse_form action in the controller</li>
+  		<li>The parse_form action will save the two timepoints from the params hash into the Query table and query the API for all entries between those timepoints</li>
+  		<li>Store the response from the API in an instance variable which will be available in views</li>
+  		<li>Redirect to a view which parses the datapoints to make HighCharts graph</li>
+  	</ul>
+
+  <p>NOTE: A maximum of 1000 datapoints can returned from a call to the Socrata API. As there are 24 hours in a day, a call of 1000 datapoints <i>should</i> will return roughly 41 days' worth of data. <i>Roughly</i>. Since the Bicycle Counter Dataset is missing datapoints, the last datapoint will probably be more than 1000 hours from the first date that is entered on the form.</p>
+  <p>The call will return fewer than 1000 datapoints if there are fewer than 1000 datapoints in the interval between your two chosen timepoints</p>
+  </div>
+</div>
+
+<div class = "panel panel-info">
+  <div class = "panel-heading">
+    <p id="warning" > Please enter your two dates using the following format:</p>
+    <p id="warning" > 2014-01-01T12:00:00</p>
+    <p id="warning" > The fields have been pre-populated for you to edit.</p>
+
+    	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
+    	   <%= label_tag(:t1, "First Hour: ") %>
+         <%= text_field_tag :t1, "2014-03-01T12:00:00" %>
+    	   <%= label_tag(:t2, "Second Hour: ") %>
+    	   <%= text_field_tag :t2, "2014-03-15T12:00:00" %>
+    	   <%= submit_tag "Create graph" %>
+    	<% end %>
+  <div>
+</div>
+</br>
+
+<div id="create1">
+  <i><p>The Datepick calendar below is in progress...</p></i>
+  <p>Date: <input type="text" id="datepicker"></p>
+  <p>Date: <input type="text" id="datepicker2"></p>
+</div>
+<script>
+ $(function() {
     $( "#datepicker" ).datepicker();
     $( "#datepicker2" ).datepicker();
   });
-
-  
-
-    </script>
-</head>
-
-
-<body>
-<h1>IN PROGRESS </h1>
-<h1>Create your own graph here<h1>
-<h3>Choose two timepoints. Submitting this form will:</h3> 
-<i>pseudocode</i>
-	<ul>
-		<li>Send a POST request to the /parse_form action in the controller</li>
-		<li>The parse_form action will save the two timepoints from the params hash into the Query table and query the API for all entries between those timepoints</li>
-		<li>Store the response from the API in an instance variable which will be available in views</li>
-		<li>Redirect to views, which will display a HighCharts graph</li>
-	</ul>
-
-<p>The application uses the Ruby DateTime library ordinal method to extract the information from the form.</p>
-<p>Please enter your timepoints in the form below in the following format:</p>
-<p>2014-01-01T12:00:00</p>
-
-	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
-	   <%= label_tag(:t1, "timepoint one: ") %>
-	   <%= text_field_tag(:t1)%>
-	   <%= label_tag(:t2, "timepoint two: ") %>
-	   <%= text_field_tag(:t2) %>
-	   <%= submit_tag "Create graph" %>
-	<% end %>
-
-<p>You can also use the Datepick calendar to select two timepoints. If you select only one timepoint, by default the application will query the dataset for all counts on that specific day.</p>
-<p>Date: <input type="text" id="datepicker"></p>
-<p>Date: <input type="text" id="datepicker2"></p>
-
-
-
-
-</div>
-
-</body>
-
+ </script>

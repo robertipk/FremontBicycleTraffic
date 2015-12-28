@@ -32,7 +32,7 @@ You entered the timepoints <%= @timepoint1.timepoint %> and <%= @timepoint2.time
 $(function () {
     $('#containerrr').highcharts({
         title: {
-            text: 'Cyclists per Hour on the Fremont Bridge: <%= @timepoint1.timepoint %>',
+            text: 'Cyclists per Hour on the Fremont Bridge: <%= @timepoint1.timepoint %> to <%= @timepoint2.timepoint %>',
             x: -20 //center
         },
         subtitle: {
