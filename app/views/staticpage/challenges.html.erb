@@ -1,5 +1,72 @@
-          <h1> Challenges and Observations </h1>
-          <div class = "panel panel-info">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+    $("#toggle").click(function(){
+        $("#explanations").slideToggle("slow");
+    });
+    $("#challenges").click(function(){
+        $("#observations").slideToggle("slow");
+    });
+
+
+});
+</script>
+
+<div id="toggle"><h1>Timeline</h1></div>
+  <div id="explanations" style="display:none">
+      <div class = "panel panel-info">
+        <div class = "panel-heading">
+          <h2>Day 1</h2>
+          <ul>
+              <li>Poked around data.seattle.gov</li>
+              <li>Set up skeleton of Rails application</li>
+              <li>Set up Twitter Bootstrap, navbar, links</li>
+              <li>Generated model to store datapoints</li>
+              <li>Refresher on HTML, CSS, JS, Jquery
+          </ul>
+        </div>
+      </div>
+
+       <div class = "panel panel-info">
+        <div class = "panel-heading">     
+          <h2>Day 2</h2>
+          <ul>
+              <li>Learned to query Socrata API</li>
+              <li>Watched RailCasts videos on integrating HighCharts into Rails</li>
+              <li>Set up Twitter Bootstrap, navbar, links</li>
+              <li>Generated model to store datapoints</li>
+          </ul>
+          </div>
+        </div>
+
+        <div class = "panel panel-info">
+          <div class = "panel-heading">
+            <h2>Day 3</h2>
+            <ul>
+                <li>Replaced hard-coded datapoints on the graphs with dynamic content</li>
+                <li>Played around with CSS</li>
+                <li>Added code snippets and explained thought process</li>
+                <li>Wasted a lot time taking screenshots of code because I didn't know how to use escape sequences in .erb</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class = "panel panel-info">
+          <div class = "panel-heading">
+          <h2>Day 4</h2>
+          <ul>
+              <li>Created form to allow users to generate their own timepoints</li>
+              <li>Watched RailCasts videos on integrating HighCharts into Rails</li>
+              <li>Set up Twitter Bootstrap, navbar, links</li>
+              <li>Generated model to store datapoints</li>
+          </ul>
+        </div>
+      </div>
+  </div>
+  
+<div id="challenges"><h1> Challenges and Observations </h1></div>
+    <div id="observations" style="display:none;">
+      <div class = "panel panel-info">
             <div class = "panel-heading">
               <h4>
                 <ul style="list-style-type:circle">
@@ -8,8 +75,8 @@
                   <li>
                   <li>I want to show .erb code snippets in my views, which are also .erb files. How do I render the snippets 'inactive' so that the view just prints it as plain html? </li>
                   <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
-                  <li>Unsurprisingly, the bridge is busiest at 5pm and 6pm</li>
                 </ul> 
               </h4> 
             </div>
           </div>
+</div>
