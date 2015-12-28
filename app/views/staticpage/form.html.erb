@@ -1,3 +1,4 @@
+  
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -14,15 +15,14 @@
   		<li>Redirect to a view which parses the datapoints to make HighCharts graph</li>
   	</ul>
 
-  <p>NOTE: A maximum of 1000 datapoints can returned from a call to the Socrata API. As there are 24 hours in a day, a call of 1000 datapoints <i>should</i> will return roughly 41 days' worth of data. <i>Roughly</i>. Since the Bicycle Counter Dataset is missing datapoints, the last datapoint will probably be more than 1000 hours from the first date that is entered on the form.</p>
-  <p>The call will return fewer than 1000 datapoints if there are fewer than 1000 datapoints in the interval between your two chosen timepoints</p>
+  <p>A maximum of 1000 datapoints (i.e. 41 days' worth of hourly counts) can be returned from a call to the Bicycle Counter API.</p>
   </div>
 </div>
 
 <div class = "panel panel-info">
   <div class = "panel-heading">
     <p id="warning" > Please enter your two dates using the following format:</p>
-    <p id="warning" > 2014-01-01T12:00:00</p>
+    <p id="warning" > 2014-01-01T12:00:00 </p> 
     <p id="warning" > The fields have been pre-populated for you to edit.</p>
 
     	<%= form_tag("/staticpage/parse_form", method: "POST") do %>
@@ -41,6 +41,7 @@
   <p>Date: <input type="text" id="datepicker"></p>
   <p>Date: <input type="text" id="datepicker2"></p>
 </div>
+
 <script>
  $(function() {
     $( "#datepicker" ).datepicker();

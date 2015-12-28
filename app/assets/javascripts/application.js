@@ -9,7 +9,7 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require staticpage.js
+//= require staticpage
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -18,5 +18,6 @@
 //= require google-code-prettify-rails/prettify
 //= require moment
 //= require bootstrap-datetimepicker
-// = require 'staticpage'
+//= require 'staticpage'
+//= require_self
 

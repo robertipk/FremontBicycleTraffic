@@ -1,10 +1,26 @@
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script> 
+$(document).ready(function(){
+    $("#data").click(function(){
+        $("#data2").slideToggle("slow");
+    });
+});
+</script>
 
-
-You entered the timepoints <%= @timepoint1.timepoint %> and <%= @timepoint2.timepoint %>
+<div class = "panel panel-info">
+  <div class = "panel-heading">
+    <div><h3>Well done! How do you like your graph?</p>
+  </div>
+</div>
 <div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div class = "panel panel-info">
+  <div class = "panel-heading">
+    <div id="data"><h3>Toggle this line to display/hide all the timepoints in your line graph.</p>
+  </div>
+</div>
+  <div id="data2" style="display:none">
 <% unless @new.empty? %>
       <p>Number of rows: <%= @new.size=%></p>
       <table border="1" style="width:100%">
@@ -22,17 +38,14 @@ You entered the timepoints <%= @timepoint1.timepoint %> and <%= @timepoint2.time
         <% end %>
       </table>
     <% end %>
-
-
-
-
-
+  </div>
+</div>
    
 <script>
 $(function () {
     $('#containerrr').highcharts({
         title: {
-            text: 'Cyclists per Hour on the Fremont Bridge: <%= @timepoint1.timepoint %> to <%= @timepoint2.timepoint %>',
+            text: 'Cyclists per Hour on the Fremont Bridge: <%= @timepoint1.timepoint %> onwards %>',
             x: -20 //center
         },
         subtitle: {

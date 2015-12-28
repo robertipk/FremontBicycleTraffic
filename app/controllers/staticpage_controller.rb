@@ -41,7 +41,7 @@ class StaticpageController < ApplicationController
     firstdate = @timepoint1.timepoint
     seconddate = @timepoint2.timepoint
     dates = "date > '#{firstdate}' AND date < '#{seconddate}'"
-    callback = client.get("4xy5-26gy", "$where" => dates)
+    callback = client.get("4xy5-26gy", "$where" => dates, "$order" => "date ASC")
     number = 1
     callback.each do |r|
       record = Count.create(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
@@ -57,7 +57,7 @@ class StaticpageController < ApplicationController
     Count.delete_all
   	client = SODA::Client.new({:domain => "data.seattle.gov/",
                              :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
-  	response = client.get("4xy5-26gy", {"$where" => "date > '2014-04-01T12:00:00' AND date < '2014-06-02T18:00:00'"})
+  	response = client.get("4xy5-26gy", {"$where" => "date > '2014-04-01T12:00:00' AND date < '2014-06-02T18:00:00'", "$order" => "date ASC"})
   	#response = client.get("4xy5-26gy", {"$order" => "'ASC'"})
     number = 1
     response.each do |r|
@@ -66,6 +66,7 @@ class StaticpageController < ApplicationController
       number = number + 1
       record.save
     end
+
 
     @data = Count.limit(500).order(date: :asc)
   end
