@@ -1,7 +1,15 @@
+
+<style type="text/css">
+.hover
+{
+    background-color:Silver;
+} 
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script> 
 $(document).ready(function(){
-    $("#toggle").click(function(){
+    $("#toggle ").click(function(){
         $("#explanations").slideToggle("slow");
     });
     $("#challenges").click(function(){
@@ -10,6 +18,14 @@ $(document).ready(function(){
     $("#todo1").click(function(){
         $("#todo2").slideToggle("slow");
     });
+
+    $('#toggle, #challenges, #todo1').mouseover(function(){
+      $(this).addClass('hover');
+   });
+   $('#toggle, #challenges, #todo1').mouseout(function(){
+      $(this).removeClass('hover');
+   });
+
 
 
 });
@@ -73,10 +89,18 @@ $(document).ready(function(){
             <div class = "panel-heading">
               <h4>
                 <ul style="list-style-type:circle">
-                  <li>The dataset is missing entries. As the counter records the number of cyclists that pass over the bridge each hour, I would expect each day to contain 24 entries. Many days are 'missing' counts for various hours. This makes averaging tallies and using the GROUP BY query more difficult.</li>
-                  <li>
-                  <li>Still unable to resize images  </li>
-                  <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
+                  <li><p><strong>User-generated graphs can only display trends over a maximum of 41 days. How can I display trends over the course of months or years?</strong></p>
+                    <p>Each call to SODA returns a maximum of 1000 datapoints, which is the equivalent of 1000 hours/41 days worth of data. To generate a line graph showing, say, 2000 timepoints, I could make two consecutive calls to SODA, which would probably take more than 10 seconds. Is there a faster way? There are over 26,000 datapoints in the dataset, so pulling the entire dataset into the application's database is not practical.</p>
+                    <p>Reading a graph with 10,000 data points on the x-axis is very messy. Using the GROUP BY or AVERAGE filter, I would be able to plot 52 weekly averages (or 365 daily/12 monthly averages), but that still involves iterating over thousands of rows at once. I know data.seattle.gov can perform those aggregrations, but right now I don't know how to do it using ActiveRecord.</p>
+                  </li>
+
+                 <li><p><strong>How do I make successive calls to SODA without replacing all existing data in the table?</strong></p>
+                    <p>I know how to populate my application's database with data from SODA, but am not too sure about how to get the data back out. Each Count model has a unique integer id from Active Record (generated when it is saved in the Count table), as well as a unique date attribute (e.g. 2014-03-01T12:00:00), which is a string. To extract data that is <i>already</i> saved within my database based on time parameters, I need to compare the these strings. </p>
+                    <p>Right now, when a user tries to generate a new graph, the controller deletes all entries in the pre-existing Count table, queries the API with the specified timepoints, and populates the table accordingly. As deleting the table using Count.delete_all does not reset the id attributes back to zero, in the each loop I use a counter to set each new datapoint's id attribute as it is saved in the table. As the this data is now saved in the table has id attributes in the range of 1-1000, I can get the data back out to by creating an appropriate instance variable to pass to the views using @foo=Count.limit(1000). Of course, this is terribly inefficient and slow.</p>
+                  </li>
+
+                  <li><p><strong>Why is my Asset Pipeline not working?</strong></p></li>
+                  
                 </ul> 
               </h4> 
             </div>
@@ -92,9 +116,12 @@ $(document).ready(function(){
                   <li>Learn to resize screenshots with the image tag</li>
                   <li>Cache data so each GET request to the views does not trigger a new API query</li>
                   <li>Still unable to resize images  </li>
-                  <li>As the number of cyclists is an integer, I naturally generated my initial Active Record model as rails g model date:string num_cyclists_west:integer num_cyclists:integer . Querying the API, however, I saw that only the 'date' field was being populated. I eventually destroyed the model and tried string attributes instead, which worked: rails g model date:string num_cyclists_west:string num_cyclists:string <li>
-                  <li>Add validations to ensure that the interval between the two dates that a user enters is not greater than 1000 hours. </li>
-                  <li>Take advantage of the Rails 4 Turbolinks. Turbolinks keeps the current page instance alive by replacing only the body or parts of the title in the head. This speeds up the process of following links in the web application because the browser no longer needs to recompile the JavaScript and CSS between each page change.</li>
+                  <li>Add validations to ensure that the interval between the two dates that a user enters is not greater than 1000 hours</li>
+                  <li>Use a gem or JavaScript library to generate a calendar or GUI for the user to use to enter the desired timepoints</li>
+                  <li>Take advantage of the Rails 4 Turbolinks. Turbolinks keeps the current page instance alive by replacing only the body or parts of the title in the head. This speeds up the process of following links in the web application because the browser no longer needs to recompile the JavaScript and CSS between each page change</li>
+                  <li>Figure out how to install LazyHighCharts gem so I can take out all the JavaScript</li>
+                  <li>Work on readme</li>
+                  <li>Provide options to find max, min, average, etc. for all datapoints between the two timepoints</li>
                 </ul> 
               </h4> 
             </div>
