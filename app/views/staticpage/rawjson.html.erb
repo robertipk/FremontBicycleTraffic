@@ -11,8 +11,8 @@
         <li>@data is passed to this view</li>
         <li>The view accepts @data and iterates through all 40 objects to create the table and graph below</li>
       </ul>
-
-    <p id="warning"><strong>If you do not see a line graph below the table, please refresh the page.</strong></p> 
+    <div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <p id="warning"><strong>If you do not see a line graph at the top of this page, please refresh the page.</strong></p> 
     <% unless @data.empty? %>
       <p>Number of rows: <%= @data.size=%></p>
       <table border="1" style="width:100%">
@@ -31,7 +31,7 @@
       </table>
     <% end %>
 
-    <div id="containerrr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+   
 </div>
    </div>    
 <script>

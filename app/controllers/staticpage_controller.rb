@@ -2,6 +2,23 @@ require 'soda/client'
 require 'pp'
 class StaticpageController < ApplicationController
   def index
+    Count.delete_all
+    client = SODA::Client.new({:domain => "data.seattle.gov/",
+                             :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
+    
+    response = client.get("4xy5-26gy", {"$where" => "date > '2014-04-01T12:00:00' AND date < '2014-06-02T18:00:00'"})
+
+
+    number = 1
+    response.each do |r|
+      record = Count.create(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
+      record.id = number
+      number = number + 1
+      record.save
+    end
+
+
+    @data = Count.limit(1000).order(date: :asc)
   end
 
   def visual
@@ -45,23 +62,29 @@ class StaticpageController < ApplicationController
     end
 
 
-    @new = Count.limit(100).order(date: :asc)
+    @new = Count.limit(950).order(date: :asc)
     render :newgraph
 
   end
 
   def rawjson
+    Count.delete_all
+
   	client = SODA::Client.new({:domain => "data.seattle.gov/",
                              :app_token => "AU94c3BhpwNnRY8ExL34d2W4x"})
-  	response = client.get("4xy5-26gy", {"$where" => "date > '2014-01-01T12:00:00' AND date < '2014-03-02T18:00:00'"})
+  	response = client.get("4xy5-26gy", {"$where" => "date > '2014-04-01T12:00:00' AND date < '2014-06-02T18:00:00'"})
   	#response = client.get("4xy5-26gy", {"$order" => "'ASC'"})
+    number = 1
+    response.each do |r|
+      record = Count.create(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
+      record.id = number
+      number = number + 1
+      record.save
+    end
 
-  	response.each do |r|
-  		record = Count.find_or_create_by(date: r.date, fremont_bridge_nb: r.fremont_bridge_nb, fremont_bridge_sb: r.fremont_bridge_sb)
-  		record.save
-  	end
-  	@data = Count.limit(10).order(date: :asc)
+    @data = Count.limit(500).order(date: :asc)
   end
+
 
 
 end

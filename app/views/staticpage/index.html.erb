@@ -12,30 +12,88 @@
 }
    </style>
 </head>
-<body>
-
-
-</body>
-</html>
-
-
           <body>
-          <h1 class="text-center">Nordstrom Internship Homework</h1>
-          <h3 class="text-center">Using the City of Seattle's API, https://data.seattle.gov, develop a process for continually polling/collecting available dataset(s).</h3>
-          <h5 class="text-center">Robert Ip</h5>
+            <h1 class="text-center">Nordstrom Internship Homework</h1>
+            <h3 class="text-center">Using the City of Seattle's API, https://data.seattle.gov, develop a process for continually polling/collecting available dataset(s).</h3>
+            <h5 class="text-center">Robert Ip</h5>
+            <strong>
+              <h4 class="text-center" id="warning">Querying the Socrata API may <i>occasionally</i> take seven seconds or more. Please be patient when clicking navbar.</h4>
+              <h4  id=warning class="text-center"> Do not spam click.</h4>
+            </strong>
+              </div>
             </div>
-          </div>
 
-          <div class = "panel panel-info">
-            <div class = "panel-heading">
-          <h3>As an avid runner and biker, when I last stayed in Seattle I frequently ran over the Fremont Bridge to get to Gas Works Park. In this Rails app, I use the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k"><strong>Fremont Bridge Bicycle Counter dataset</strong></a> to show trends in bicycle traffic over the Fremont Bridge. </h3>
-          <h4><i>The Fremont Bridge Bicycle Counter records the number of bikes that cross the bridge using the pedestrian/bicycle pathways. Inductive loops on the east and west pathways count the passing of bicycles regardless of travel direction. The data consists of a date/time field: Date, east pathway count field: Fremont Bridge NB, and west pathway count field: Fremont Bridge SB. The count fields represent the total bicycles detected during the specified one hour period. Direction of travel is not specified, but in general most traffic in the Fremont Bridge NB field is travelling northbound and most traffic in the Fremont Bridge SB field is travelling southbound.</i></h4>
-          <p id="warning"><strong>If you do not see a line graph below, please refresh the page.</p></strong>
-          <p id="warning"><strong>Querying the API may take several seconds. Please be patient when clicking on the links (<i>especially</i> the 'Extracting the Data' link) in the navbar. Do not spam click.</p></strong>
-          </div>
+            <div class = "panel panel-info">
+              <div class = "panel-heading">
+                <h3>As an avid runner and biker, when I last stayed in Seattle I frequently ran over the Fremont Bridge to get to Gas Works Park. In this Rails app, I use the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k"><strong>Fremont Bridge Bicycle Counter dataset</strong></a> to show trends in bicycle traffic over the Fremont Bridge. </h3>
+                <h4><i>The Fremont Bridge Bicycle Counter records the number of bikes that cross the bridge using the pedestrian/bicycle pathways. Inductive loops on the east and west pathways count the passing of bicycles regardless of travel direction. The data consists of a date/time field: Date, east pathway count field: Fremont Bridge NB, and west pathway count field: Fremont Bridge SB. The count fields represent the total bicycles detected during the specified one hour period. Direction of travel is not specified, but in general most traffic in the Fremont Bridge NB field is travelling northbound and most traffic in the Fremont Bridge SB field is travelling southbound.</i></h4>
+                <p id="warning"><strong>If you do not see a line graph below, please refresh the page.</strong></p>
+            
+              </div>
             </div>
-          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-
-</body>
+            <div id="line" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </body>
+<script>
+$(function () {
+    $('#line').highcharts({
+        title: {
+            text: 'Cyclists on the Fremont Bridge: 4/1/2014 - 6/2/2014',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: data.seattle.gov',
+            x: -20
+        },
+        xAxis: {
+            title:  {
+                text: 'Hour'
+            },
+            categories: [ <% @data.first(@data.size-1).each do |record| %>
+                          '<%= record.date %>',
+                          <% end %>
+                          '<%= @data.last.date%>'
+              ]
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Cyclists'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ' cyclists'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Fremont Bridge East Path',
+            data:
+            [
+            <% @data.first(@data.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_sb %>,
+            <% end %>
+            <%= @data.last.fremont_bridge_sb%>
+            ]     
+          },
+            {
+            name: 'Fremont Bridge West Path',
+            data:
+            [
+            <% @data.first(@data.size-1).each do |rec| %>
+            <%= rec.fremont_bridge_nb %>,
+            <% end %>
+            <%= @data.last.fremont_bridge_nb%>
+            ]     
+          }]
+    });
+});
+</script>
 </html>
