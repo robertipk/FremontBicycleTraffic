@@ -10,10 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require staticpage
+//= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require jquery
+
 //= require bootstrap-sprockets
 //= require google-code-prettify-rails/prettify
 //= require moment
