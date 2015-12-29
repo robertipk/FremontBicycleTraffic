@@ -75,9 +75,8 @@ $(document).ready(function(){
           <h2>Day 4</h2>
           <ul>
               <li>Created form to allow users to generate their own timepoints</li>
-              <li>Watched RailCasts videos on integrating HighCharts into Rails</li>
-              <li>Set up Twitter Bootstrap, navbar, links</li>
-              <li>Generated model to store datapoints</li>
+              <li>Integrating HighCharts into Rails</li>
+              <li>Deployed to Heroku</li>
           </ul>
         </div>
       </div>
@@ -90,18 +89,27 @@ $(document).ready(function(){
               <h4>
                 <ul style="list-style-type:circle">
                   <li><p><strong>User-generated graphs can only display trends over a maximum of 41 days. How can I display trends over the course of months or years?</strong></p>
-                    <p>Each call to SODA returns a maximum of 1000 datapoints, which is the equivalent of 1000 hours/41 days worth of data. To generate a line graph showing, say, 2000 timepoints, I could make two consecutive calls to SODA, which would probably take more than 10 seconds. Is there a faster way? There are over 26,000 datapoints in the dataset, so pulling the entire dataset into the application's database is not practical.</p>
-                    <p>Reading a graph with 10,000 data points on the x-axis is very messy. Using the GROUP BY or AVERAGE filter, I would be able to plot 52 weekly averages (or 365 daily/12 monthly averages), but that still involves iterating over thousands of rows at once. I know data.seattle.gov can perform those aggregrations, but right now I don't know how to do it using ActiveRecord.</p>
+                    <p>Each call to SODA returns a maximum of 1000 datapoints - the equivalent of 1000 hours/41 days worth of data. To generate a line graph showing, say, 2000 timepoints, I could make two consecutive calls to SODA, which would probably take more than 10 seconds. Is there a faster way? There are over 26,000 datapoints in the dataset, so pulling the entire dataset into the application's database is not practical.</p>
+                    <p>Reading a graph with 10,000 data points on the x-axis is very messy. Using the GROUP BY or AVERAGE filter in my call to the API, I can plot 52 weekly averages (or 365 daily/12 monthly averages), but that still involves iterating over thousands of rows at once. I know data.seattle.gov can perform those aggregrations, but right now I don't know how to do it using ActiveRecord.
+</p>
                   </li>
 
                  <li><p><strong>How do I make successive calls to SODA without replacing all existing data in the table?</strong></p>
-                    <p>I know how to populate my application's database with data from SODA, but am not too sure about how to get the data back out. Each Count model has a unique integer id from Active Record (generated when it is saved in the Count table), as well as a unique date attribute (e.g. 2014-03-01T12:00:00), which is a string. To extract data that is <i>already</i> saved within my database based on time parameters, I need to compare the these strings. </p>
                     <p>Right now, when a user tries to generate a new graph, the controller deletes all entries in the pre-existing Count table, queries the API with the specified timepoints, and populates the table accordingly. As deleting the table using Count.delete_all does not reset the id attributes back to zero, in the each loop I use a counter to set each new datapoint's id attribute as it is saved in the table. As the this data is now saved in the table has id attributes in the range of 1-1000, I can get the data back out to by creating an appropriate instance variable to pass to the views using @foo=Count.limit(1000). Of course, this is terribly inefficient and slow.</p>
                   </li>
 
+                  <li><p><strong>How to parse date attribute to query pre-existing data in my database?</strong></p></li>
+                  <p>My Count model has a unique integer id from Active Record (generated when it is saved in the Count table), as well as a unique date attribute (e.g. 2014-03-01T12:00:00), which is a string. To extract data that is already saved within my database based on time parameters, I need to compare the these strings.</p>
+                  <p>The problem is that the ActiveRecord id is not related to the date attribute. For example, if the first query calls for data from April-June and the second query calls for data from Jan-Feb, the id’s of the former will range from 1-1000 and will have earlier dates, while those of the latter will range from 1001-2000 and will have later dates. The id attribute will not help me sort the objects by their dates.</p>
+
+                   <li><p><strong>Do I even need a model and a database if I only need to display the data on a graph?</strong></p></li>
+                   <p>The Bicycle Counter dataset is too large to pull entirely into my database. I think I can pass the JSON response from the API from the controller to the view without saving it in a table. To create the same line graphs, I would just need to loop through the hash and output the results into the x- and y- axes. Of course, if a user wants to display the same time interval on the graph, it would be more efficient to find the objects in the table than to query the API again.</p>
+
+                   <li><p><strong>Still very confused about development vs production environments.</strong></p></li>
+                   
+
                   <li><p><strong>Why is my Asset Pipeline not adding my javascript files to the manifest javascript file?</strong></p></li>
 
-                  <li><p><strong>Why does the page sometimes have to be reloaded for the jquery function to run?</strong></p></li>
 
                   
                 </ul> 
@@ -124,7 +132,8 @@ $(document).ready(function(){
                   <li>Take advantage of the Rails 4 Turbolinks. Turbolinks keeps the current page instance alive by replacing only the body or parts of the title in the head. This speeds up the process of following links in the web application because the browser no longer needs to recompile the JavaScript and CSS between each page change</li>
                   <li>Figure out how to install LazyHighCharts gem so I can take out all the JavaScript</li>
                   <li>Work on readme</li>
-                  <li>Provide options to find max, min, average, etc. for all datapoints between the two timepoints</li>
+                  <li>Take css and js out of the views</li>
+                  <li>Provide options to find max, min, count, sum average, etc. for all datapoints between the two timepoints</li>
                 </ul> 
               </h4> 
             </div>
